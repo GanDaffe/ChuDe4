@@ -44,7 +44,7 @@ void timkiem()
                 cout << "\n\t\t\t-HO VA TEN: " << name;
                 cout << "\n\t\t\t-ID: " << checkID;
                 cout << "\n\t\t\t-CHUC DANH: " << exp;
-                break;
+                return;
             }
             getline(file, name);
             getline(file, checkID);
@@ -52,39 +52,48 @@ void timkiem()
         }
     file.close();
     }
+    cout << "\n\t\t\t KHONG TON TAI DU LIEU";
+    system("pause");
 
 }
 //Kiem tra so ngay cong cua nhan vien
 void checkngaycong() 
 {  
-    ifstream file("WorkDay.txt"); //Mo lay du lieu tu file 
-    string check;
+    int check;
+    int getID;
+    int index = 0;
     //Neu khong ton tai file thi in ra man hinh
+    ifstream file("WorkDay.txt"); //Mo lay du lieu tu file 
     if(!file) 
     {
         cout << "\n\t\t\tKHONG TON TAI DU LIEU";
         system("pause");
         return;
     }
-    std::string str = "";
-    int index = 0;
-    int pointer = 0;
-    //Tinh so dong co trong file
-    while(!file.eof()) 
-    {   
-        getline(file, str);
-        index++;
-    }
-    string data[index];
-    
+    int ngaycong[12];
     cout << "\n\t\t\tNhap ID cua nhan vien can kiem tra: ";
+    cout << "\n\n\tInput here ->";
     cin >> check;
-    //Lưu từng dòng vào mảng
-    while(!file.eof())  getline(file, data[pointer++]);
-
-    cout << setfill('_');
-    cout << setw(95) << '\n';
-    cout << setw(55) << "SO NGAY LAM VIEC THEO THANG" << setw(45) << '\n';
+    
+    file >> getID;
+    while(!file.eof()) 
+    {
+        if(check == getID) 
+        {
+            while(!file.eof() && index != 12) 
+            {
+                file >> getID;
+                ngaycong[index] = getID;
+                index++;
+            }
+        }
+        file >> getID;
+    }
+    file.close();
+    system("cls");
+    cout << "\n\t\t\tID Nhan vien: " << check;
+    for(int i = 0; i < 12; i++) cout << "\n\t\t -So ngay cong thang " << i + 1 << ": " << ngaycong[i] << '\n';
+    system("pause");
 
 }
 //Lap bang thong ke
@@ -128,6 +137,7 @@ void thongke()
     }
 
     cout << "\n\t\t\tBam [Y] de kiem tra ngay cong cua nhan vien hoac bam [N] de thoat";
+    cout << "\n\n\t\tInput here -> ";
     cin >> ch;
     cin.clear();
     fflush(stdin);
@@ -165,7 +175,7 @@ void ngaycong(employee emp[], int size)
                 emp[i].ngaycong[j] = 0;
             }
         }
-        file << "\n" << emp[i].ID << " " << emp[i].ngaycong[0] << " " << emp[i].ngaycong[1] << " " << emp[i].ngaycong[2] << " " << emp[i].ngaycong[3] << " " << emp[i].ngaycong[4] << " " << emp[i].ngaycong[5] << " " << emp[i].ngaycong[6] << " " << emp[i].ngaycong[7] << " "<< emp[i].ngaycong[8] << " " << emp[i].ngaycong[9] << " " << emp[i].ngaycong[10] << " " << emp[i].ngaycong[11];
+        file << "\n" << emp[i].ID << '\n' << emp[i].ngaycong[0] << '\n' << emp[i].ngaycong[1] << '\n' << emp[i].ngaycong[2] << '\n' << emp[i].ngaycong[3] << '\n' << emp[i].ngaycong[4] << '\n' << emp[i].ngaycong[5] << '\n' << emp[i].ngaycong[6] << '\n' << emp[i].ngaycong[7] << '\n' << emp[i].ngaycong[8] << '\n' << emp[i].ngaycong[9] << '\n' << emp[i].ngaycong[10] << '\n' << emp[i].ngaycong[11];
 
     }
     file.close();
@@ -200,7 +210,6 @@ void passwordUser()
     char ch;
 
     do { 
-        system("cls");
         cout << "\n\t\t\t ----------------------------";
         cout << "\n\t\t\tHE THONG QUAN LI NHAN VIEN";
         cout << "\n\t\t\t ----------------------------";
@@ -296,14 +305,15 @@ void user()
             ch = _getch();
         }
         getline(file, name_c);
-        getline(file, pass_c);
         while(!file.eof()) {
-            if(pass == pass_c && name == name_c) {
-                count = 1;
-                system("cls");
+            if(name == name_c) {
+                getline(file, pass_c);
+                if(pass == pass_c) {
+                    count = 1;
+                    break;
+                }
             }
-            getline(file, name_c);
-            getline(file, pass_c);
+            else getline(file, name_c);
         }
         file.close();
         if(count == 1) {
