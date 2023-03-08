@@ -43,7 +43,8 @@ void timkiem()
                 cout << "\n\t\t\t***TIM THAY NHAN VIEN***";
                 cout << "\n\t\t\t-HO VA TEN: " << name;
                 cout << "\n\t\t\t-ID: " << checkID;
-                cout << "\n\t\t\t-CHUC DANH: " << exp;
+                cout << "\n\t\t\t-CHUC DANH: " << exp << '\n';
+                system("pause");
                 return;
             }
             getline(file, name);
@@ -179,6 +180,7 @@ void ngaycong(employee emp[], int size)
 
     }
     file.close();
+    system("pause");
     
 }
 void nhapdulieu(employee emp[], int size) 
@@ -200,6 +202,7 @@ void nhapdulieu(employee emp[], int size)
 
     }
     file.close();
+    system("pause");
     
 }
 
@@ -210,6 +213,7 @@ void passwordUser()
     char ch;
 
     do { 
+        system("cls");
         cout << "\n\t\t\t ----------------------------";
         cout << "\n\t\t\tHE THONG QUAN LI NHAN VIEN";
         cout << "\n\t\t\t ----------------------------";
