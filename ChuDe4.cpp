@@ -85,6 +85,7 @@ void checkngaycong()
         {
             if(check == getID) 
             {
+                found = 1;
                 while(!file.eof() && index != 12) 
                 {
                     file >> getID;
@@ -94,13 +95,13 @@ void checkngaycong()
             }
             file >> getID;
         }
-        found += 1;
     }
     file.close();
     system("cls");
     if(found == 0) 
     {
-        cout << "\n\t\t\tKhong tim thay nhan vien.";
+        cout << "\n\t\t\t----Khong tim thay nhan vien----\n";
+        system("pause");
     }
     else
     {
@@ -150,20 +151,23 @@ void thongke()
         file.close();
     }
 
-    cout << "\n\t\t\tBam [Y] de kiem tra ngay cong cua nhan vien hoac bam [N] de thoat";
+    cout << "\n\t\t\tBam [W] de kiem tra ngay cong cua nhan vien, bam [X] de xoa nhan vien hoac bam [Q] de thoat";
     cout << "\n\t\t\tNhap tai day: ";
     cin >> ch;
     cin.clear();
     fflush(stdin);
 
-    if(ch == 'n' || ch == 'N') return;
-    else if(ch == 'y' || ch == 'Y') checkngaycong();
+    if(ch == 'q' || ch == 'Q') return;
+    else if(ch == 'w' || ch == 'W') checkngaycong();
+    else if(ch == 'x' || ch == 'X' ) xdelete();
     else 
     { 
-        cout << "\n\t\t\tVui long chi nhap [Y] hoac [N] ";
+        cout << "\n\t\t\tVui long chi nhap [W] [X] va [N]\n ";
+        system("pause");
         return;
     }
     cin.ignore();
+    thongke();
 }
 
 void ngaycong(employee emp[], int size)
@@ -178,12 +182,12 @@ void ngaycong(employee emp[], int size)
     for(int i = 0 ; i < size; i++) {
         system("cls");
         cout << "\n\t\t\tBan dang nhap ngay cong cho nhan vien " << emp[i].name;
-        cout << "\t\t\t---------------------------------------------";
+        cout << "\n\t\t\t---------------------------------------------";
         
         for(int j = 0 ; j < 12; j++) {
             cout << "\n\t\t\tNhap ngay cong thang thu " << j + 1 << ": ";
-            cout << "\n\t\t\t---------------------------------------------";
             cin >> temp;
+            cout << "\n\t\t\t---------------------------------------------";
             cin.clear();
             fflush(stdin);
             while(temp > 26 || temp < 0) 
@@ -415,7 +419,7 @@ void xdelete()
             if(checkID != deleteID) 
             {   
                 file3 << name << "\n" << checkID << "\n" << exp << '\n';
-                file4 << getworkday << '\n';
+                if(!file2.eof()) file4 << getworkday << '\n';
                 getline(file2, getworkday);
             }
             else 
@@ -423,7 +427,7 @@ void xdelete()
                 cout << "\n\t\t\tNhan vien: " << name;
                 cout << "\n\t\t\tID: " << checkID;
                 cout << "\n\t\t\tChuc danh: " << exp;
-                cout << "\n\t\t\tDa xoa nhan vien";
+                cout << "\n\t\t\tDa xoa nhan vien\n";
                 getline(file2, getworkday);
                 found = true;
             }
