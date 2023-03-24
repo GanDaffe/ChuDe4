@@ -79,7 +79,6 @@ void checkngaycong()
     cout << "\n\t\t\tNhap ID cua nhan vien can kiem tra: ";
     cout << "\n\n\t\t\tNhap tai day: ->";
     cin >> check;
-    
     file >> getID;
         while(!file.eof()) 
         {
@@ -114,6 +113,7 @@ void checkngaycong()
 //Lap bang thong ke
 void thongke() 
 {   
+    system("cls");
     int stt = 1;
     string name = "";
     int ID = 0; 
@@ -250,7 +250,6 @@ void passwordUser()
 
         switch(select) {
             case 1: 
-                system("cls");
                 thongke();
                 break;
             case 2: 
@@ -304,7 +303,7 @@ void user()
     int count;
     int choice;
     char ch;
-    ifstream file;
+    ifstream file("AdminAccount.txt");
 
     cout << "\n\t\t\t ----------------------------";
     cout << "\n\t\t\tChuong trinh quan li nhan vien";
@@ -317,7 +316,6 @@ void user()
 
     if(choice == 1) {
         system("cls");
-        file.open("AdminAccount.txt");
         cout << "\n\t\t\t ----------------------------";
         cout << "\n\t\t\tDang nhap tai khoan ADMIN";   
         cout << "\n\t\t\t ----------------------------";
@@ -332,18 +330,24 @@ void user()
             ch = _getch();
         }
         
-        getline(file, name_c);
-        while(!file.eof()) {
-            if(name == name_c) {
-                getline(file, pass_c);
-                if(pass == pass_c) {
+        if(!file) 
+        {
+            cout << "\n\t\t\tChua co tai khoan nao.";
+        }
+        else 
+        {   
+            file >> name_c >> pass_c;
+            while(!file.eof()) {
+                if(name == name_c && pass == pass_c)  
+                {
                     count = 1;
                     break;
                 }
-            }
-            else getline(file, name_c);
-        }
+                file >> name_c >> pass_c;
+
+            }   
         file.close();
+        }
         if(count == 1) {
             cout << "\n\t\t\tDang nhap thanh cong!";
             passwordUser();
@@ -371,10 +375,11 @@ void user()
             ch = _getch();
         }
         ofstream file("AdminAccount.txt", ios::app); 
-        file << '\n' <<name_c << '\n' << pass_c << '\n';
+        file << name_c << " " << pass_c << '\n';
         file.close();
         cout << "\n\t\t\tDang ky moi tai khoan ADMIN thanh cong";
         getch();
+        system("cls");
         user();
     }
     else { 
@@ -386,6 +391,7 @@ void user()
 
 void xdelete() 
 {
+    system("cls");
     string deleteID, checkID, name, exp;
     char choice;
     string getworkday;
