@@ -22,7 +22,6 @@ void thongke();
 void passwordUser() 
 {   
     int select;
-    int size;
     char ch;
 
     do { 
