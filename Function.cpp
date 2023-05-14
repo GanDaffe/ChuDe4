@@ -22,7 +22,6 @@ void thongke();
 void passwordUser() 
 {   
     int select;
-    char ch;
 
     do { 
         system("cls");
@@ -41,6 +40,7 @@ void passwordUser()
 
         switch(select) {
             case 1: 
+                system("cls");
                 thongke();
                 break;
             case 2: 
@@ -159,7 +159,7 @@ void user()
         cout << "\n\t\t\tDang ky moi tai khoan ADMIN thanh cong";
         getch();
         system("cls");
-        user();
+        passwordUser();
     }
     else { 
         cout << "\n\t\t\tInput khong hop le!";
@@ -170,9 +170,7 @@ void user()
 
 void xdelete() 
 {
-    system("cls");
     string deleteID, checkID, name, exp;
-    char choice;
     string getworkday;
     bool found = false;
 
@@ -386,7 +384,6 @@ void nhapdulieu()
 
     cout << "-------------------------------------------NHAP NGAY CONG----------------------------------------------\n";
     int temp;
-    int index = 0;
     
 	file.open("WorkDay.txt", ios::app | ios::out);
     cout << "\n\t\t\tBan dang nhap ngay cong cho nhan vien: " << emp.name;
@@ -408,7 +405,6 @@ void nhapdulieu()
     }
     file << emp.ID << ' ' << emp.ngaycong[0] << ' ' << emp.ngaycong[1] << ' ' << emp.ngaycong[2] << ' ' << emp.ngaycong[3] << ' ' << emp.ngaycong[4] << ' ' << emp.ngaycong[5] << ' ' << emp.ngaycong[6] << ' ' << emp.ngaycong[7] << ' ' << emp.ngaycong[8] << ' ' << emp.ngaycong[9] << ' ' << emp.ngaycong[10] << ' ' << emp.ngaycong[11] << '\n';
 	file.close();
-
     cout << "\n\t\t\tTiep tuc nhap <Y/N>: ";
     cin >> ch;
     cin.ignore();

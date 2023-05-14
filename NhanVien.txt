@@ -1,18 +1,30 @@
-Quang Duy
-1234
-AI Scientist
-Pham Duy
-1236
+Quang Duy 
+1000
+Ai Engineer
+Do Dung 
+1001
+Designer
+Duc Anh 
+1003
+Tester
+Dang Hai 
+1004
 Dev
-Quoc Dat
-1235
-Dev
-Do Dung
-5555
-AI Enginner
-Dang Hai
-1288
-Dev
-Duc Anh
-3221
+Van Dong
+1005
+Chuyen Vien An Ninh
+Chi Linh 
+1006
+Ke Toan 
+Tran Duong
+1007
+Tech Lead
+Hai Dang 
+1008
+AI Engineer
+Hoang Duy
+1009
 AI Dev
+Van Dung
+1010
+UX/UI 
