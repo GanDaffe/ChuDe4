@@ -23,7 +23,6 @@ void thongke();
 void passwordUser() 
 {   
     int select;
-    char ch;
 
     do { 
         system("cls");
@@ -303,7 +302,7 @@ void checkngaycong()
     else 
     {
     cout << "\n\t\t\tNhap ID cua nhan vien can kiem tra: ";
-    cout << "\n\n\t\t\tNhap tai day: ->";
+    cout << "\n\n\t\t\tNhap tai day -> ";
     cin >> check;
     file >> getID;
         while(!file.eof()) 
