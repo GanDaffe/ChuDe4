@@ -10,6 +10,7 @@ void user();
 void xdelete();
 void timkiem();
 void checkngaycong();
-bool checkID();
+bool checkID(std::string &checkID);
+void xemToanBo();
 void nhapdulieu();
 void thongke();
