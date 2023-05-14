@@ -15,13 +15,15 @@ void user();
 void xdelete();
 void timkiem();
 void checkngaycong();
-bool checkID();
+bool checkID(string &checkID);
+void xemToanBo();
 void nhapdulieu();
 void thongke();
 
 void passwordUser() 
 {   
     int select;
+    char ch;
 
     do { 
         system("cls");
@@ -32,15 +34,15 @@ void passwordUser()
         cout << "\n\t\t\t2.Them nhan vien";
         cout << "\n\t\t\t3.Xoa nhan vien";
         cout << "\n\t\t\t4.Tim kiem";
-        cout << "\n\t\t\t5.Thoat";
-        cout << "\n\t\t\tNhap 1 / 2 / 3 / 4 / 5 : ";
+        cout << "\n\t\t\t5.Xem toan bo";
+        cout << "\n\t\t\t6.Thoat chuong trinh";
+        cout << "\n\t\t\tNhap 1 / 2 / 3 / 4 / 5 / 6 : ";
         cin >> select;
         cin.clear();
         fflush(stdin);
 
         switch(select) {
             case 1: 
-                system("cls");
                 thongke();
                 break;
             case 2: 
@@ -57,20 +59,22 @@ void passwordUser()
                 system("cls");
                 timkiem();
                 break;
-            case 5: 
-                {   
-                    system("cls");
+            case 5:   
+                system("cls");
+                xemToanBo();
+                break;
+            case 6:
+                { 
                     cout << "\n\t\t\t  HE THONG QUAN LI NHAN VIEN";
                     cout << "\n\t\t\t\t----Da tat----\n";
                     exit(0);
-                    break;
-                } 
+                }
             default: 
                 system("cls");
                 break;
         }
 
-    } while(select != 5);
+    } while(select != 6);
 }
 
 void user() 
@@ -159,7 +163,7 @@ void user()
         cout << "\n\t\t\tDang ky moi tai khoan ADMIN thanh cong";
         getch();
         system("cls");
-        passwordUser();
+        user();
     }
     else { 
         cout << "\n\t\t\tInput khong hop le!";
@@ -170,7 +174,9 @@ void user()
 
 void xdelete() 
 {
+    system("cls");
     string deleteID, checkID, name, exp;
+    char choice;
     string getworkday;
     bool found = false;
 
@@ -351,6 +357,49 @@ bool checkID(string &checkID)
     
 }
 
+void xemToanBo() 
+{
+    system("cls");
+    string ID, name, exp;
+    char choice;
+    int index = 1;
+    ifstream file("NhanVien.txt");
+
+    if(!file) 
+    {
+        cout << "\n\t\t\tKhong mo duoc file!"; 
+    }
+    else 
+    {
+        getline(file, name);
+        getline(file, ID);
+        getline(file, exp);
+        
+        cout << "\n\t\t\tDANH SACH NHAN VIEN HIEN CO: ";
+        while(!file.eof()) 
+        {
+            cout << "\n\t\t\tSTT: " << index++;
+            cout << "\n\t\t\tTen: " << name;
+            cout << "\n\t\t\tID: " << ID;
+            cout << "\n\t\t\tCong viec hien tai: " << exp;
+            cout << "\n\t\t\t---------------------------------------------";
+
+            getline(file, name);
+            getline(file, ID);
+            getline(file, exp);
+        }
+    }
+    file.close();
+
+    cout << "\n\t\t\tBam [T] de xem o che do thong ke, bam [Q] de thoat.";
+    cout << "\n\t\t\t--> ";
+    cin >> choice;
+    cin.clear();
+    fflush(stdin);
+
+    if(toupper(choice) == 'T') thongke();
+}
+
 void nhapdulieu() 
 {
     system("cls");
@@ -384,6 +433,7 @@ void nhapdulieu()
 
     cout << "-------------------------------------------NHAP NGAY CONG----------------------------------------------\n";
     int temp;
+    int index = 0;
     
 	file.open("WorkDay.txt", ios::app | ios::out);
     cout << "\n\t\t\tBan dang nhap ngay cong cho nhan vien: " << emp.name;
@@ -405,6 +455,7 @@ void nhapdulieu()
     }
     file << emp.ID << ' ' << emp.ngaycong[0] << ' ' << emp.ngaycong[1] << ' ' << emp.ngaycong[2] << ' ' << emp.ngaycong[3] << ' ' << emp.ngaycong[4] << ' ' << emp.ngaycong[5] << ' ' << emp.ngaycong[6] << ' ' << emp.ngaycong[7] << ' ' << emp.ngaycong[8] << ' ' << emp.ngaycong[9] << ' ' << emp.ngaycong[10] << ' ' << emp.ngaycong[11] << '\n';
 	file.close();
+
     cout << "\n\t\t\tTiep tuc nhap <Y/N>: ";
     cin >> ch;
     cin.ignore();
