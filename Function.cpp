@@ -390,7 +390,7 @@ void xemToanBo()
     }
     file.close();
 
-    cout << "\n\t\t\tBam [T] de xem o che do thong ke, bam [Q] de thoat.";
+    cout << "\n\t\t\tBam [T] de xem o che do thong ke, bam bat ki de thoat.";
     cout << "\n\t\t\t--> ";
     cin >> choice;
     cin.clear();
