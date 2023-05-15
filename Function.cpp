@@ -1,8 +1,8 @@
-#include "BTL.h" 
+#include "BTL.h"
 
 using namespace std;
 
-struct employee 
+struct employee
 {
 string name;
 string ID;
@@ -20,11 +20,11 @@ void xemToanBo();
 void nhapdulieu();
 void thongke();
 
-void passwordUser() 
-{   
+void passwordUser()
+{
     int select;
 
-    do { 
+    do {
         system("cls");
         cout << "\n\t\t\t ----------------------------";
         cout << "\n\t\t\tHE THONG QUAN LI NHAN VIEN";
@@ -41,10 +41,10 @@ void passwordUser()
         fflush(stdin);
 
         switch(select) {
-            case 1: 
+            case 1:
                 thongke();
                 break;
-            case 2: 
+            case 2:
                 {
                     system("cls");
                     nhapdulieu();
@@ -54,21 +54,21 @@ void passwordUser()
                 system("cls");
                 xdelete();
                 break;
-            case 4: 
+            case 4:
                 system("cls");
                 timkiem();
                 break;
-            case 5:   
+            case 5:
                 system("cls");
                 xemToanBo();
                 break;
             case 6:
-                { 
+                {
                     cout << "\n\t\t\t  HE THONG QUAN LI NHAN VIEN";
                     cout << "\n\t\t\t\t----Da tat----\n";
                     exit(0);
                 }
-            default: 
+            default:
                 system("cls");
                 break;
         }
@@ -76,7 +76,7 @@ void passwordUser()
     } while(select != 6);
 }
 
-void user() 
+void user()
 {
     string name_c = "";
     string pass_c = "";
@@ -99,7 +99,7 @@ void user()
     if(choice == 1) {
         system("cls");
         cout << "\n\t\t\t ----------------------------";
-        cout << "\n\t\t\tDang nhap tai khoan ADMIN";   
+        cout << "\n\t\t\tDang nhap tai khoan ADMIN";
         cout << "\n\t\t\t ----------------------------";
         cout << "\n\t\t\tUsername: ";
         cin >> name;
@@ -111,23 +111,23 @@ void user()
             cout << '*';
             ch = _getch();
         }
-        
-        if(!file) 
+
+        if(!file)
         {
             cout << "\n\t\t\tChua co tai khoan nao.";
         }
-        else 
-        {   
+        else
+        {
             file >> name_c >> pass_c;
             while(!file.eof()) {
-                if(name == name_c && pass == pass_c)  
+                if(name == name_c && pass == pass_c)
                 {
                     count = 1;
                     break;
                 }
                 file >> name_c >> pass_c;
 
-            }   
+            }
         file.close();
         }
         if(count == 1) {
@@ -140,7 +140,7 @@ void user()
             system("cls");
             user();
         }
-   } 
+   }
     else if(choice == 2) {
         system("cls");
         cout << "\n\t\t\t ----------------------------";
@@ -156,7 +156,7 @@ void user()
             cout << '*';
             ch = _getch();
         }
-        ofstream file("AdminAccount.txt", ios::app); 
+        ofstream file("AdminAccount.txt", ios::app);
         file << name_c << " " << pass_c << '\n';
         file.close();
         cout << "\n\t\t\tDang ky moi tai khoan ADMIN thanh cong";
@@ -164,14 +164,14 @@ void user()
         system("cls");
         user();
     }
-    else { 
+    else {
         cout << "\n\t\t\tInput khong hop le!";
         cout << "\n\t\t\t ----------------------------";
         user();
     }
 }
 
-void xdelete() 
+void xdelete()
 {
     system("cls");
     string deleteID, checkID, name, exp;
@@ -179,20 +179,20 @@ void xdelete()
     string getworkday;
     bool found = false;
 
-    cout << "\n\t\t\tNhap ID nhan vien muon xoa: "; 
+    cout << "\n\t\t\tNhap ID nhan vien muon xoa: ";
     cin >> deleteID;
 
     ifstream file1("NhanVien.txt");
     ifstream file2("WorkDay.txt");
-    
-    if(!file1) 
+
+    if(!file1)
     {
         cout << "\n\t\t\tKhong co du lieu";
         file1.close();
         file2.close();
     }
-    else 
-    {   
+    else
+    {
         ofstream file3("Record1.txt", ios::app | ios::out);
         ofstream file4("Record2.txt", ios::app | ios::out);
 
@@ -201,16 +201,16 @@ void xdelete()
         getline(file1, exp);
         getline(file2, getworkday);
 
-        while(!file1.eof()) 
-        {   
+        while(!file1.eof())
+        {
 
-            if(checkID != deleteID) 
-            {   
+            if(checkID != deleteID)
+            {
                 file3 << name << "\n" << checkID << "\n" << exp << '\n';
                 if(!file2.eof()) file4 << getworkday << '\n';
                 getline(file2, getworkday);
             }
-            else 
+            else
             {
                 cout << "\n\t\t\tNhan vien: " << name;
                 cout << "\n\t\t\tID: " << checkID;
@@ -223,7 +223,7 @@ void xdelete()
             getline(file1, checkID);
             getline(file1, exp);
         }
-    
+
         file1.close();
         file2.close();
         file3.close();
@@ -233,7 +233,7 @@ void xdelete()
         rename("Record1.txt", "NhanVien.txt");
         rename("Record2.txt", "WorkDay.txt");
     }
-    if(!found) 
+    if(!found)
     {
         cout << "\n\t\t\tKhong co nhan vien nay!\n";
     }
@@ -241,7 +241,7 @@ void xdelete()
 
 }
 
-void timkiem() 
+void timkiem()
 {
     system("cls");
     string ID;
@@ -252,21 +252,21 @@ void timkiem()
 
     cout << "\n\t\t\tNhap ID muon tim kiem: ";
     cin >> ID;
-                            
-    if(!file) 
+
+    if(!file)
     {
         cout << "\n\t\t\tKHONG CO DU LIEU";
         system("pause");
         return;
     }
-    else 
-    {   
+    else
+    {
         getline(file, name);
         getline(file, checkID);
         getline(file, exp);
-        while(!file.eof()) 
+        while(!file.eof())
         {
-            if(checkID == ID) 
+            if(checkID == ID)
             {
                 cout << "\n\t\t\t***TIM THAY NHAN VIEN***";
                 cout << "\n\t\t\t-HO VA TEN: " << name;
@@ -285,32 +285,32 @@ void timkiem()
     system("pause");
 }
 //Kiem tra so ngay cong cua nhan vien
-void checkngaycong() 
-{  
+void checkngaycong()
+{
     int check;
     int getID, found = 0;
     int index = 0;
     int ngaycong[12];
     //Neu khong ton tai file thi in ra man hinh
-    ifstream file("WorkDay.txt"); //Mo lay du lieu tu file 
-    if(!file) 
+    ifstream file("WorkDay.txt"); //Mo lay du lieu tu file
+    if(!file)
     {
         cout << "\n\t\t\tKHONG TON TAI DU LIEU";
         system("pause");
         return;
-    } 
-    else 
+    }
+    else
     {
     cout << "\n\t\t\tNhap ID cua nhan vien can kiem tra: ";
     cout << "\n\n\t\t\tNhap tai day -> ";
     cin >> check;
     file >> getID;
-        while(!file.eof()) 
+        while(!file.eof())
         {
-            if(check == getID) 
+            if(check == getID)
             {
                 found = 1;
-                while(!file.eof() && index != 12) 
+                while(!file.eof() && index != 12)
                 {
                     file >> getID;
                     ngaycong[index] = getID;
@@ -322,7 +322,7 @@ void checkngaycong()
     }
     file.close();
     system("cls");
-    if(found == 0) 
+    if(found == 0)
     {
         cout << "\n\t\t\t----Khong tim thay nhan vien----\n";
         system("pause");
@@ -336,27 +336,28 @@ void checkngaycong()
 
 }
 
-bool checkID(string &checkID) 
+
+bool checkID(string &checkID)
 {
     string fileID;
     ifstream file("NhanVien.txt");
     if(!file) return true;
-    else 
+    else
     {
         getline(file, fileID);
-        while(!file.eof()) 
+        while(!file.eof())
         {
-            if(checkID == fileID) 
+            if(checkID == fileID)
                 return false;
             getline(file, fileID);
         }
         file.close();
     }
-    return true; 
-    
+    return true;
+
 }
 
-void xemToanBo() 
+void xemToanBo()
 {
     system("cls");
     string ID, name, exp;
@@ -364,18 +365,18 @@ void xemToanBo()
     int index = 1;
     ifstream file("NhanVien.txt");
 
-    if(!file) 
+    if(!file)
     {
-        cout << "\n\t\t\tKhong mo duoc file!"; 
+        cout << "\n\t\t\tKhong mo duoc file!";
     }
-    else 
+    else
     {
         getline(file, name);
         getline(file, ID);
         getline(file, exp);
-        
+
         cout << "\n\t\t\tDANH SACH NHAN VIEN HIEN CO: ";
-        while(!file.eof()) 
+        while(!file.eof())
         {
             cout << "\n\t\t\tSTT: " << index++;
             cout << "\n\t\t\tTen: " << name;
@@ -399,21 +400,27 @@ void xemToanBo()
     if(toupper(choice) == 'T') thongke();
 }
 
-void nhapdulieu() 
+void nhapdulieu()
 {
     system("cls");
     char ch;
     employee emp;
     fstream file;
     regex pattern("[0-9]{4}");
+    regex pattern2("[A-Z][a-z]{1,}\\s[A-Z][a-z]{1,}");
     //mo file bang fstream
     file.open("NhanVien.txt" , ios::app | ios::out);
-    
-    cout << "\n\t\t\tNhap ten nhan vien: " ;
+
+    cout << "\n\t\t\tNhap ten nhan vien (Ho dem va Ten): ";
     getline(cin, emp.name);
+    while(!regex_match(emp.name, pattern2))
+        {
+            cout << "\n\t\t\tTen khong hop le, vui long nhap lai: ";
+            getline(cin, emp.name);
+        }
     cout << "\n\t\t\tNhap ID[4 chu so]: ";
     cin >> emp.ID;
-    while(!checkID(emp.ID) || !regex_match(emp.ID, pattern)) 
+    while(!checkID(emp.ID) || !regex_match(emp.ID, pattern))
     {
         if(!checkID(emp.ID)) cout << "\n\t\t\tTrung lap ID, vui long nhap lai: ";
         else if (!regex_match(emp.ID, pattern)) cout << "\n\t\t\tSai dinh dang ID, vui long nhap lai: ";
@@ -433,17 +440,17 @@ void nhapdulieu()
     cout << "-------------------------------------------NHAP NGAY CONG----------------------------------------------\n";
     int temp;
     int index = 0;
-    
+
 	file.open("WorkDay.txt", ios::app | ios::out);
     cout << "\n\t\t\tBan dang nhap ngay cong cho nhan vien: " << emp.name;
     cout << "\n\t\t\t---------------------------------------------";
-        
+
     for(int j = 0 ; j < 12; j++) {
         cout << "\n\t\t\tNhap ngay cong thang thu " << j + 1 << ": ";
         cin >> temp;
         cout << "\n\t\t\t---------------------------------------------";
-    
-        while(temp > 26 || temp < 0 || cin.fail()) 
+
+        while(temp > 26 || temp < 0 || cin.fail())
         {
             cout << "\n\t\t\tNgay cong khong hop le!\n\t\t\tNhap lai: ";
             cin.clear();
@@ -462,21 +469,21 @@ void nhapdulieu()
     if(ch == 'Y' || ch == 'y') nhapdulieu();
     else return;
 
-	system("cls");  
+	system("cls");
 }
 
-void thongke() 
-{   
+void thongke()
+{
     system("cls");
     int stt = 1;
     string name = "";
-    string ID = ""; 
+    string ID = "";
     string exp = "";
     char ch;
     //Mo file NhanVien.txt de lay thong tin
     ifstream file("NhanVien.txt");
     cout << setw(40) << "---DU LIEU THONG KE---" << setw(55) << "\n\n";
-    if(!file) 
+    if(!file)
     {
         cout << "\n\t\t\t---KHONG CO DU LIEU---\n";
         system("pause");
@@ -493,14 +500,14 @@ void thongke()
         cout << "----------------------------------------------------------------------\n";
         cout << setw(3) << "STT" << setw(4)<< '\t' << "ID" << setw(12) << "\t " <<  "Ho Ten" << setw(10) << "\t" << "Chuc danh" << "\n" ;
         cout << "----------------------------------------------------------------------\n";
-            while(!file.eof()) 
-            {                                                      
+            while(!file.eof())
+            {
                 cout << setw(1) << stt++ << setw(4) << '\t' << ID << setw(12) << '\t'  <<  name << setw(10) << "\t" << exp << "\n";
                 getline(file, name);
                 file >> ID;
                 file.ignore();
                 getline(file, exp);
-            } 
+            }
         cout << "----------------------------------------------------------------------\n";
         file.close();
     }
@@ -514,8 +521,8 @@ void thongke()
     if(ch == 'q' || ch == 'Q') return;
     else if(ch == 'w' || ch == 'W') checkngaycong();
     else if(ch == 'x' || ch == 'X' ) xdelete();
-    else 
-    { 
+    else
+    {
         cout << "\n\t\t\tVui long chi nhap [W] [X] va [N]\n ";
         system("pause");
         return;
