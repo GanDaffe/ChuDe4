@@ -414,7 +414,7 @@ void nhapdulieu()
     employee emp;
     fstream file;
     regex pattern("[0-9]{4}");
-    regex pattern2("[A-Z][a-z]{1,}\\s[A-Z][a-z]{1,}");
+    regex pattern2("([A-Z][a-z]+\\s[A-Z][a-z]+(\\s[A-Z][a-z]+)*)+");
     //mo file bang fstream
     file.open("NhanVien.txt" , ios::app | ios::out);
 
