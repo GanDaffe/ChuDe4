@@ -25,7 +25,9 @@ const char ngay_cong = 'W';
 const char xoa = 'X';
 const char thoat_ham = 'Q';
 const char xac_nhan = 'Y';
-
+const int so_ngay_toi_da = 26; 
+const int so_ngay_toi_thieu = 0;
+const int so_thang = 12;
 
 void passwordUser()
 {
@@ -297,7 +299,7 @@ void checkngaycong()
     int check;
     int getID, found = 0;
     int index = 0;
-    int ngaycong[12];
+    int ngaycong[so_thang];
     //Neu khong ton tai file thi in ra man hinh
     ifstream file("WorkDay.txt"); //Mo lay du lieu tu file
     if(!file)
@@ -317,7 +319,7 @@ void checkngaycong()
             if(check == getID)
             {
                 found = 1;
-                while(!file.eof() && index != 12)
+                while(!file.eof() && index != so_thang)
                 {
                     file >> getID;
                     ngaycong[index] = getID;
@@ -337,7 +339,7 @@ void checkngaycong()
     else
     {
         cout << "\n\t\t\tID Nhan vien: " << check;
-        for(int i = 0; i < 12; i++) cout << "\n\t\t -So ngay cong thang " << i + 1 << ": " << ngaycong[i] << '\n';
+        for(int i = 0; i < so_thang; i++) cout << "\n\t\t -So ngay cong thang " << i + 1 << ": " << ngaycong[i] << '\n';
         system("pause");
     }
 
@@ -452,12 +454,12 @@ void nhapdulieu()
     cout << "\n\t\t\tBan dang nhap ngay cong cho nhan vien: " << emp.name;
     cout << "\n\t\t\t---------------------------------------------";
 
-    for(int j = 0 ; j < 12; j++) {
+    for(int j = 0 ; j < so_thang; j++) {
         cout << "\n\t\t\tNhap ngay cong thang thu " << j + 1 << ": ";
         cin >> temp;
         cout << "\n\t\t\t---------------------------------------------";
 
-        while(temp > 26 || temp < 0 || cin.fail())
+        while(temp > so_ngay_toi_da || temp < so_ngay_toi_thieu || cin.fail())
         {
             cout << "\n\t\t\tNgay cong khong hop le!\n\t\t\tNhap lai: ";
             cin.clear();
