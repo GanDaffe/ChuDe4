@@ -20,6 +20,13 @@ void xemToanBo();
 void nhapdulieu();
 void thongke();
 
+const char thong_ke = 'T';
+const char ngay_cong = 'W';
+const char xoa = 'X';
+const char thoat_ham = 'Q';
+const char xac_nhan = 'Y';
+
+
 void passwordUser()
 {
     int select;
@@ -397,7 +404,7 @@ void xemToanBo()
     cin.clear();
     fflush(stdin);
 
-    if(toupper(choice) == 'T') thongke();
+    if(toupper(choice) == thong_ke) thongke();
 }
 
 void nhapdulieu()
@@ -462,11 +469,11 @@ void nhapdulieu()
     file << emp.ID << ' ' << emp.ngaycong[0] << ' ' << emp.ngaycong[1] << ' ' << emp.ngaycong[2] << ' ' << emp.ngaycong[3] << ' ' << emp.ngaycong[4] << ' ' << emp.ngaycong[5] << ' ' << emp.ngaycong[6] << ' ' << emp.ngaycong[7] << ' ' << emp.ngaycong[8] << ' ' << emp.ngaycong[9] << ' ' << emp.ngaycong[10] << ' ' << emp.ngaycong[11] << '\n';
 	file.close();
 
-    cout << "\n\t\t\tTiep tuc nhap <Y/N>: ";
+    cout << "\n\t\t\tTiep tuc nhap [Y] hoac bam phim bat ki de thoat: ";
     cin >> ch;
     cin.ignore();
 
-    if(ch == 'Y' || ch == 'y') nhapdulieu();
+    if(toupper(ch) == xac_nhan) nhapdulieu();
     else return;
 
 	system("cls");
@@ -518,12 +525,12 @@ void thongke()
     cin.clear();
     fflush(stdin);
 
-    if(ch == 'q' || ch == 'Q') return;
-    else if(ch == 'w' || ch == 'W') checkngaycong();
-    else if(ch == 'x' || ch == 'X' ) xdelete();
+    if(toupper(ch) == thoat_ham) return;
+    else if(toupper(ch) == ngay_cong) checkngaycong();
+    else if(toupper(ch) == xoa) xdelete();
     else
     {
-        cout << "\n\t\t\tVui long chi nhap [W] [X] va [N]\n ";
+        cout << "\n\t\t\tVui long chi nhap [W] [X] va [Q]\n ";
         system("pause");
         return;
     }
