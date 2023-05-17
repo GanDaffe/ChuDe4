@@ -417,9 +417,8 @@ void nhapdulieu()
     fstream file;
     regex pattern("[0-9]{4}");
     regex pattern2("([A-Z][a-z]+\\s[A-Z][a-z]+(\\s[A-Z][a-z]+)*)+");
-    //mo file bang fstream
+	
     file.open("NhanVien.txt" , ios::app | ios::out);
-
     cout << "\n\t\t\tNhap ten nhan vien (Ho dem va Ten): ";
     getline(cin, emp.name);
     while(!regex_match(emp.name, pattern2))
